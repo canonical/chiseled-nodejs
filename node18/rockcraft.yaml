@@ -1,4 +1,4 @@
-name: nodejs
+name: node
 version: '18'
 summary: Node.js 18 rock
 description: |
@@ -16,7 +16,7 @@ base: bare
 build-base: ubuntu@24.04
 
 parts:
-    nodejs:
+    node:
         plugin: nil
         stage-packages:
           - base-files_base
