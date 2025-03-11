@@ -17,7 +17,7 @@ Convert the rock to a Docker image using the `skopeo` tool:
 
 ```sh
 $ skopeo --insecure-policy copy \
-      oci-archive:nodejs_18_amd64.rock \
+      oci-archive:node_18_amd64.rock \
       docker-daemon:ubuntu/chiselled-node:18
 ```
 
