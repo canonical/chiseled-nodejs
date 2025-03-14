@@ -29,3 +29,47 @@ parts:
           - libgcc-s1_libs
           - libc6_libs
           - nodejs_bins
+    manifest:
+        plugin: nil
+        after: [node]
+        build-packages:
+            - zstd
+            - jq
+        override-build: |
+            mkdir -p $CRAFT_PART_INSTALL/usr/share/rocks
+            FIELDS=(
+                '${db:Status-Abbrev}'
+                '${binary:Package}'
+                '${Version}'
+                '${source:Package}'
+                '${Source:Version}\n'
+            )
+            zstd -d -f -q $CRAFT_STAGE/var/lib/chisel/manifest.wall \
+                -o $CRAFT_PART_BUILD/manifest
+
+            # Awk fortmat
+            awk_script='
+            {
+                binary=$1
+                version=$2
+                cmd = "dpkg-query -W -f='\''${source:Package}\n'\'' " binary " | head -n 1"
+                if ((cmd | getline source) > 0) {
+                    print "ii ," binary ":" arch "," version "," source "," version
+                }
+                close(cmd)
+            }'
+
+            # Create security manifest file
+            (echo "# os-release" && cat /etc/os-release && echo "# dpkg-query") \
+            > $CRAFT_PART_INSTALL/usr/share/rocks/dpkg.query
+
+            # Add packages
+            (
+                awk -v arch=${CRAFT_ARCH_BUILD_FOR} -F' ' "$awk_script" <<< \
+                $(
+                    jq -r 'select(.kind == "package") | "\(.name) \(.version)"' \
+                    $CRAFT_PART_BUILD/manifest
+                )
+            ) >> $CRAFT_PART_INSTALL/usr/share/rocks/dpkg.query
+
+            craftctl default
