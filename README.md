@@ -4,9 +4,8 @@ A distroless-like Nodejs image based on Ubuntu.
 
 ## Chiselled image
 
-This rock is made out of `nodejs_bins` chisel slice, meaning it
-contains just the basic packages to run Nodejs. You can read more
-about Chisel [here](https://documentation.ubuntu.com/chisel/en/latest/).
+This image was created with [Chisel](https://documentation.ubuntu.com/chisel) to reduce the content of this image to only the essentials. This creates a more compact image with a smaller overall attack surface. Details on the content of this image can be found under the `nodejs_bins` slice in the [chisel-releases](https://github.com/canonical/chisel-releasesl)
+repository.
 
 ## Available versions
 
