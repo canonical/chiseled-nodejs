@@ -29,6 +29,7 @@ parts:
           - libgcc-s1_libs
           - libc6_libs
           - nodejs_bins
+
     deb-security-manifest:
         plugin: make
         source: https://github.com/canonical/rocks-security-manifest
