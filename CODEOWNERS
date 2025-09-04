@@ -1,1 +1,5 @@
-*       @rebornplusplus @linostar
+# GitHub CODEOWNERS. See:
+# https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+# Remember, the last match takes precedence.
+
+*       @alesancor1 @zhijie-yang

@@ -1,4 +1,18 @@
-node_modules/
+# rock
+*.rock
+
+# OS Files
+.DS_store
+
+# Spread
+.craft-spread*/
+.spread-reuse*
+
+# IDE
+.vs_code/
+.vscode/
+.idea/
+
+# Tests
 dist/
-# we are not a serious Node.js project, so we will ignore package-lock.json
-package-lock.json
+node_modules/

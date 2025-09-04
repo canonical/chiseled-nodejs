@@ -1,13 +1,11 @@
-# Chiselled Node.js 18 LTS
+# Node.js 18 LTS
 
 This directory contains the image recipes of Chiselled Node.js 18 LTS. These images are smaller in size,
-hence less prone to vulnerabilities. Know more about chisel [here](https://github.com/canonical/chisel).
-
-We currently have Chiselled Node.js only on noble. See [Dockerfile.24.04](./Dockerfile.24.04).
+hence less prone to vulnerabilities.
 
 ### Building the image(s)
 
-Build the Dockerfile(s) in the usual way:
+Build the Image using [Rockcraft](https://documentation.ubuntu.com/rockcraft/stable/):
 
 ```sh
 $ rockcraft pack
@@ -23,7 +21,7 @@ $ skopeo --insecure-policy copy \
 
 ### Run the image(s)
 
-The image has the "node" binary as the entrypoint.
+By default, rocks have [pebble](https://documentation.ubuntu.com/pebble/) as the entrypoint, so we can run commands via `pebble exec`:
 
 ```sh
 $ docker run -it ubuntu/chiselled-node:18 exec node
